@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.DS_Store
+*.pt
+*.zip
+*.log
+*.pid
+training_status.json
+construction_safety_class9_data/
+runs/
+submission.csv
