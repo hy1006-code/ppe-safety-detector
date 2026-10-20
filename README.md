@@ -6,6 +6,10 @@
 
 累计有效训练100轮，最佳模型位于累计第90轮。验证集 Precision 86.381%，Recall 69.993%，mAP@50 77.311%，mAP@50–95 43.806%。报告内 Kaggle 截图显示 Public Score 0.74007、Private Score 0.70871。
 
+## 演示视频
+
+[demo/ppe_detection_demo.mp4](demo/ppe_detection_demo.mp4)：检测效果录屏（由原始 170MB 录屏压缩至约 2MB，H.264），在 GitHub 仓库页面可直接在线播放。
+
 ## 环境
 
 Python 3.9.6、PyTorch 2.8.0、Ultralytics 8.4.177。先建立虚拟环境，再安装 requirements-ppe-lock.txt。训练先使用 MPS，反复出现 NaN 后切换 CPU 完成。
