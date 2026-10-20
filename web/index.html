@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>施工现场安全装备检测</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div><div class="eyebrow">PPE DETECTION / 实验演示</div><h1>施工现场安全装备检测</h1><p class="subtitle">打开摄像头，查看安全帽、安全背心与人员等目标的实时检测结果。</p></div>
+      <div class="model-chip"><span class="dot" id="readyDot"></span><span id="modelLabel">正在连接模型</span></div>
+    </header>
+    <div class="workspace">
+      <section class="viewer-card" aria-label="实时检测画面">
+        <div class="viewer-heading"><div class="feed-label"><span class="live-dot" id="liveDot"></span><span id="modeLabel">摄像头未开启</span></div><span id="resolution">等待画面</span></div>
+        <div class="stage" id="stage">
+          <canvas id="output" width="640" height="480" aria-label="带目标检测框的画面"></canvas>
+          <div class="empty-state" id="emptyState"><div class="camera-icon" aria-hidden="true"><svg width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="6" y="12" width="36" height="27" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="25" r="8" stroke="currentColor" stroke-width="2"/><path d="M15 12l3-5h12l3 5" stroke="currentColor" stroke-width="2"/></svg></div><h2>准备开始检测</h2><p>允许浏览器使用摄像头后，画面会显示在这里。</p><span>仅在本机处理 · 不自动保存画面</span></div>
+        </div>
+        <div class="viewer-footer"><span id="frameStatus" role="status" aria-live="polite">模型连接中…</span><span>10 类目标检测</span></div>
+      </section>
+      <aside class="panel">
+        <section class="controls-card"><h2>检测控制</h2>
+          <button id="startButton" class="button primary" disabled>打开摄像头并检测</button>
+          <div class="button-pair"><button id="stopButton" class="button secondary" disabled>停止检测</button><button id="saveButton" class="button secondary" disabled>保存检测截图</button></div>
+          <label class="threshold-label" for="confidence"><span>置信度阈值</span><output id="confidenceValue" for="confidence">0.25</output></label>
+          <input id="confidence" type="range" min="0.10" max="0.90" value="0.25" step="0.05">
+          <p class="help">调高可减少低置信度结果，调低可显示更多候选目标。</p>
+          <button id="demoButton" class="demo-button" disabled>先用示例图片检查模型 <span aria-hidden="true">↗</span></button>
+          <div id="error" class="error" role="alert" hidden></div>
+        </section>
+        <section class="results-card"><div class="section-title"><h2>当前检测结果</h2><span class="count-badge" id="targetCount">0 个</span></div>
+          <div class="metrics"><div><span>处理耗时</span><strong id="latency">—<small> ms</small></strong></div><div><span>检测更新</span><strong id="fps">—<small> 帧/秒</small></strong></div></div>
+          <div class="detection-list" id="detectionList"><p class="list-empty">开始检测后显示目标与置信度</p></div>
+        </section>
+        <p class="report-tip">实验截图建议：正面穿戴、侧身或改变距离、不同光照下各拍一张。请先戴好安全帽和安全背心。</p>
+      </aside>
+    </div>
+    <footer class="page-footer"><span>浏览器摄像头 → 本地 YOLOv8n → 检测框与类别</span><span>安全装备识别实验</span></footer>
+    <video id="camera" autoplay muted playsinline hidden></video>
+  </main>
+</body>
+</html>
